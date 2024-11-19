@@ -1,6 +1,9 @@
 import {students} from '../data/StudentsDb';
+import Profile from './Profile';
+import {useState} from "react";
 
-export default function Table(){
+export default function Table(props){
+    const [stu,setStu]=useState(props.students[0]);
     return(
     
         <div className="outerDiv">
@@ -22,13 +25,16 @@ export default function Table(){
                 <td>{students.lastName} </td>
                 <td>{students.course} </td>
                 <td>{students.address.country} </td>
-                <td><button>View</button></td>
+                <td><button id={students.studentId} onClick={()=>setStu(students)}>View</button></td>
             </tr> 
                 )
             }
             
         </table>
         </div>
+        <div className="rightDiv">
+                        <Profile stu = {stu}/>
+             </div>
         </div>
     );
 }
